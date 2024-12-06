@@ -2,19 +2,22 @@
   "name": "@src/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "nx run-many --target=test"
+  },
   "private": true,
   "dependencies": {
     "axios": "^1.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
-    "@nx/esbuild": "20.2.0",
+    "@nx/esbuild": "^20.2.0",
     "@nx/eslint": "20.2.0",
     "@nx/eslint-plugin": "20.2.0",
     "@nx/jest": "20.2.0",
     "@nx/js": "20.2.0",
     "@nx/node": "^20.2.0",
+    "@nx/vite": "^20.2.0",
     "@nx/workspace": "20.2.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
