@@ -1,4 +1,4 @@
-import { calculateDistance } from "./calculator";
+import { calculateDistance } from "./distance";
 
 describe("distance calculator", () => {
     it("should calculate the distance between two points", () => {

@@ -1,7 +1,8 @@
 import { argv } from 'process';
 import { createReadStream } from 'fs';
 import { createInterface } from 'readline';
-import { calculateDistance } from './distanceCalculator/calculator';
+import { calculateDistance } from './calculators/distance';
+import { calculateSimilarity } from './calculators/similarity';
 
 const fileName = argv[2];
 
@@ -30,7 +31,15 @@ rl.on('line', (line) => {
 rl.on('close', () => {
   calculateDistance(origin, destination)
     .then((distance) => {
-      console.log(`Result: ${distance}`);
+      console.log(`Part 1 Result: ${distance}`);
+    })
+    .catch((error) => {
+      console.error(error);
+      process.exit(1);
+    });
+  calculateSimilarity(origin, destination)
+    .then((distance) => {
+      console.log(`Part 1 Result: ${distance}`);
     })
     .catch((error) => {
       console.error(error);
