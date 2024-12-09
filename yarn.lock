@@ -1476,7 +1476,7 @@
 
 "@nx/esbuild@^20.2.0":
   version "20.2.0"
-  resolved "https://registry.yarnpkg.com/@nx/esbuild/-/esbuild-20.2.0.tgz#c1bdf41150b43b1e38bf1b367e90d252e874465e"
+  resolved "https://registry.npmjs.org/@nx/esbuild/-/esbuild-20.2.0.tgz"
   integrity sha512-o+e4umwmZE7w9tY1Ohtgf8jN1WOKAXuweRQtcKxPPZnyLPn+Ia7W8sMRE7DxRxyTZcuindbL11DqefaD/GaG8g==
   dependencies:
     "@nx/devkit" "20.2.0"

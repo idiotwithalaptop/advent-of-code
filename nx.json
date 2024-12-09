@@ -33,7 +33,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/2024/01-e2e/**/*"]
+      "exclude": ["apps/2024/01-e2e/**/*", "apps/2024/02-e2e/**/*"]
     }
   ]
 }
