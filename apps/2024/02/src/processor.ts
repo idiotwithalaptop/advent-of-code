@@ -8,32 +8,45 @@ export type Result = {
 
 export function processLine(line: string): Result {
   if (line.match(/^(\d+\s+)*\d+$/)) {
-    let evaluator: Evaluator;
     const numbers = line.split(/\s+/).map(Number);
+    const isSafeV1 = processNumbers(numbers);
+    const isSafeV2 =
+      isSafeV1 ||
+      numbers.some((number, i, arr) => {
+        const dampened = arr.slice();
+        dampened.splice(i, 1);
+        return processNumbers(dampened);
+      });
 
-    if (numbers.length < 2) {
-      return { line, isSafeV1: true, isSafeV2: true };
-    }
-
-    for (let i = 0; i < numbers.length - 1; i++) {
-      const current = numbers[i];
-      const next = numbers[i + 1];
-
-      if (!evaluator) {
-        const validEvaluator = all().find((e) => e(current, next));
-        if (!validEvaluator) {
-          return { line, isSafeV1: false, isSafeV2: true };
-        }
-        evaluator = validEvaluator;
-      }
-
-      if (!evaluator(current, next)) {
-        return { line, isSafeV1: false, isSafeV2: true };
-      }
-    }
-
-    return { line, isSafeV1: true, isSafeV2: true };
+    return { line, isSafeV1, isSafeV2 };
   } else {
     throw new Error(`Invalid line: '${line}'`);
   }
+}
+
+function processNumbers(numbers: number[]): boolean {
+  let evaluator: Evaluator;
+
+  if (numbers.length < 2) {
+    return true;
+  }
+
+  for (let i = 0; i < numbers.length - 1; i++) {
+    const current = numbers[i];
+    const next = numbers[i + 1];
+
+    if (!evaluator) {
+      const validEvaluator = all().find((e) => e(current, next));
+      if (!validEvaluator) {
+        return false;
+      }
+      evaluator = validEvaluator;
+    }
+
+    if (!evaluator(current, next)) {
+      return false;
+    }
+  }
+
+  return true;
 }

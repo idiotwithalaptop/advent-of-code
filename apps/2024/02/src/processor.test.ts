@@ -28,7 +28,7 @@ describe('processor', () => {
     expect(processLine('1 2 4 8 9 11')).toStrictEqual({
       line: '1 2 4 8 9 11',
       isSafeV1: false,
-      isSafeV2: true,
+      isSafeV2: false,
     });
   });
 
@@ -70,7 +70,7 @@ describe('processor', () => {
       expect(processLine('1 2 7 8 9')).toStrictEqual({
         line: '1 2 7 8 9',
         isSafeV1: false,
-        isSafeV2: true,
+        isSafeV2: false,
       });
     });
     // 9 7 6 2 1: Unsafe because 6 2 is a decrease of 4.
@@ -78,7 +78,7 @@ describe('processor', () => {
       expect(processLine('9 7 6 2 1')).toStrictEqual({
         line: '9 7 6 2 1',
         isSafeV1: false,
-        isSafeV2: true,
+        isSafeV2: false,
       });
     });
     // 1 3 2 4 5: Unsafe because 1 3 is increasing but 3 2 is decreasing.
