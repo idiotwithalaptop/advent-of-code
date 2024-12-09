@@ -25,7 +25,7 @@ rl.on('line', (line) => {
   }
 });
 rl.on('close', () => {
-    console.dir(results);
-  const totalSafe = results.filter((r) => r.isSafe).length;
+  console.dir(results);
+  const totalSafe = results.filter((r) => r.isSafeV1).length;
   console.log(`Total safe lines: ${totalSafe}`);
 });
