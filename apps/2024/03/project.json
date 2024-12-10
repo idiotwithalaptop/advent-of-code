@@ -1,0 +1,56 @@
+{
+  "name": "task-2024-03",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/2024/03/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/2024/03",
+        "format": [
+          "cjs"
+        ],
+        "bundle": false,
+        "main": "apps/2024/03/src/main.js",
+        "tsConfig": "apps/2024/03/tsconfig.app.json",
+        "assets": [
+          "apps/2024/03/src/assets"
+        ],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "run": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "{projectName}:build",
+        "args": [
+          "{projectRoot}/input.txt"
+        ]
+      }
+    }
+  }
+}
