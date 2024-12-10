@@ -2,7 +2,7 @@ import { argv } from 'process';
 import { createReadStream } from 'fs';
 import { createInterface } from 'readline';
 import { Letter, toLinkedLetter, WordSearch } from './domain';
-import { find } from './searcher';
+import { find, findX } from './searcher';
 
 const fileName = argv[2];
 
@@ -22,7 +22,8 @@ rl.on('line', (line) => {
   wordSearchBoard.push(line.split('') as Letter[]);
 });
 rl.on('close', () => {
-  const word = toLinkedLetter('XMAS');
-  const result = find(word, wordSearchBoard);
-  console.log("Number of found xmas': ", result);
+  const part1Result = find(toLinkedLetter('XMAS'), wordSearchBoard);
+  console.log("Number of found xmas': ", part1Result);
+  const part2Result = findX(toLinkedLetter('MAS'), wordSearchBoard);
+  console.log("Number of found X-MAS': ", part2Result);
 });
