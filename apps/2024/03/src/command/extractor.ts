@@ -10,15 +10,15 @@ export function extractCommands(
     )}))\\((?<args>((-?[0-9]+.?[0-9]*|".*?"),?)*)\\)`,
     'g'
   );
-  // regex to match a numeric value or a string surrounded by quotes
-  // (?<key>(cmd))\\((?<args>(-?[0-9]+.?[0-9]*|\".*?\"))\\)
+
   const matches = input.matchAll(cmdRegex);
   for (const match of matches) {
     commands.push({
       key: match.groups.key,
       args: match.groups.args
         .split(',')
-        .map((arg) => arg.replace(/^"(.+)"$/, '$1')),
+        .filter((a) => a.length > 0)
+        .map((arg) => arg.replace(/^"(.*)"$/, '$1')),
     });
   }
 

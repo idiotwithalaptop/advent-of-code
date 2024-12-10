@@ -1,8 +1,15 @@
 import { multiply } from './multiplier';
 import { Command } from './types';
 
+let active = true;
 const commandRegistry = {
   mul: multiply,
+  do: () => {
+    active = true;
+  },
+  "don't": () => {
+    active = false;
+  },
 };
 
 export type CommandExecution = Command & {
@@ -15,6 +22,9 @@ export function supportedCommands(): string[] {
 }
 
 export function executeCommand(command: Command): CommandExecution {
+  if (!active && command.key !== 'do') {
+    return { ...command, failed: true };
+  }
   const commandsToParse = supportedCommands();
   if (!commandsToParse.includes(command.key)) {
     throw new Error(`Unsupported command: ${command.key}`);

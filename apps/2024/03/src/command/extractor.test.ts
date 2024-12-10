@@ -57,4 +57,31 @@ describe('extractor', () => {
       },
     ]);
   });
+  it('supports commands with no arguments', () => {
+    const commandStr = 'cmd()';
+    expect(extractCommands(commandStr, 'cmd')).toStrictEqual([
+      {
+        key: 'cmd',
+        args: [],
+      },
+    ]);
+  });
+  it('supports args with empty strings', () => {
+    const commandStr = 'cmd("")';
+    expect(extractCommands(commandStr, 'cmd')).toStrictEqual([
+      {
+        key: 'cmd',
+        args: [''],
+      },
+    ]);
+  });
+  it('supports commands with commas', () => {
+    const commandStr = "don't()";
+    expect(extractCommands(commandStr, "don't")).toStrictEqual([
+      {
+        key: "don't",
+        args: [],
+      },
+    ]);
+  });
 });
