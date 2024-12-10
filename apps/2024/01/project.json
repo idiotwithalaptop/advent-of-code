@@ -40,7 +40,7 @@
     "run": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "task-2024-01:build",
+        "buildTarget": "{projectName}:build",
         "args": ["{projectRoot}/input.txt"]
       }
     }
